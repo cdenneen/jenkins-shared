@@ -2,9 +2,9 @@
 
 def call(Closure body) {
     podTemplate(label: 'puppet', containers:[
-        containerTemplate(name: 'ruby21', image: 'ruby:2.1-alpine', ttyEnabled: true, command: 'cat'),
-        containerTemplate(name: 'ruby22', image: 'ruby:2.2-alpine', ttyEnabled: true, command: 'cat'),
-        containerTemplate(name: 'ruby23', image: 'ruby:2.3-alpine', ttyEnabled: true, command: 'cat')
+        containerTemplate(name: 'ruby21', image: 'ruby:2.1', ttyEnabled: true, command: 'cat'),
+        containerTemplate(name: 'ruby22', image: 'ruby:2.2', ttyEnabled: true, command: 'cat'),
+        containerTemplate(name: 'ruby23', image: 'ruby:2.3', ttyEnabled: true, command: 'cat')
     ]){
         node('puppet') {
                 container(name: 'ruby21'){
