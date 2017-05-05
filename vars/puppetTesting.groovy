@@ -7,13 +7,13 @@ def call(Closure body) {
         containerTemplate(name: 'ruby23', image: 'ruby:2.3-alpine', ttyEnabled: true, command: 'cat')
     ]){
         node('puppet') {
-                container('ruby21'){
+                container(name: 'ruby21'){
                     body()
                 }
-                container('ruby22'){
+                container(name: 'ruby22'){
                     body()
                 }
-                container('ruby23'){
+                container(name: 'ruby23'){
                     body()
                 }
         }
