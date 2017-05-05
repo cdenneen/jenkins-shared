@@ -1,3 +1,5 @@
+#!/usr/bin/groovy
+
 def call(Closure body) {
     podTemplate(label: 'puppet', containers:[
         containerTemplate(name: 'ruby21', image: 'ruby:2.1-alpine', ttyEnabled: true, command: 'cat'),
