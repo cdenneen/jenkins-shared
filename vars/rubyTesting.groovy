@@ -10,15 +10,15 @@ def call(String[] rubyVersions = ['ruby21', 'ruby22', 'ruby23'], Closure body) {
       def rubyMatrix = [:]
       for (int i = 0; i < rubyVersions.size(); i++) {
         def index = i
-        rubyMatrix["${rubyVersions[index]}"] = {
+//        rubyMatrix["${rubyVersions[index]}"] = {
           stage("${rubyVersions[index]}"){
             container(name: "${rubyVersions[index]}"){
               body()
             }
           }
-        }
+//        }
       }
-      parallel rubyMatrix
+//      parallel rubyMatrix
     }
   }
 }
