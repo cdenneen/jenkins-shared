@@ -8,15 +8,15 @@ def call(String[] rubyVersions = ['ruby21', 'ruby22', 'ruby23'], Closure body) {
     ]){
         node('rubypod') {
             def matrix = [:]
-            matrix = {
-                for (i = 0; i < rubyVersions.size(); i++) {
-                    def index = i
+            for (int i = 0; i < rubyVersions.size(); i++) {
+                def index = i
+                matrix[index] = {
                     container(name: "${rubyVersions[index]}"){
                         body()
                     }
                 }
             }
-            parallel matrix
+            parallel ( 'matrix': matrix)
         }
     }
 }
