@@ -7,7 +7,7 @@ def call(String[] rubyVersions = ['ruby21', 'ruby22', 'ruby23'], Closure body) {
         containerTemplate(name: 'ruby23', image: 'ruby:2.3', ttyEnabled: true, command: 'cat')
     ]){
         node('rubypod') {
-            def matrix = [:]
+            def rubyMatrix = [:]
             for (int i = 0; i < rubyVersions.size(); i++) {
                 def index = i
                 matrix["${rubyVersions[index]}"] = {
@@ -16,7 +16,7 @@ def call(String[] rubyVersions = ['ruby21', 'ruby22', 'ruby23'], Closure body) {
                     }
                 }
             }
-            parallel matrix
+            parallel rubyMatrix
         }
     }
 }

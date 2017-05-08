@@ -1,21 +1,15 @@
 #!/usr/bin/groovy
 
-def call(Closure body) {
-    podTemplate(label: 'puppet', containers:[
-        containerTemplate(name: 'ruby21', image: 'ruby:2.1', ttyEnabled: true, command: 'cat'),
-        containerTemplate(name: 'ruby22', image: 'ruby:2.2', ttyEnabled: true, command: 'cat'),
-        containerTemplate(name: 'ruby23', image: 'ruby:2.3', ttyEnabled: true, command: 'cat')
-    ]){
-        node('puppet') {
-                container(name: 'ruby21'){
-                    body()
-                }
-                container(name: 'ruby22'){
-                    body()
-                }
-                container(name: 'ruby23'){
-                    body()
-                }
+def call(String[] puppetVersions = ['4.7.1', '4.8.1', '4.9.4'], Closure body) {
+  for (int i; i < puppetVersions.size(); i++) {
+    def index = i
+    puppetMatrix["${puppetVersions[index]}"] = {
+      withEnv("PUPPET_GEM_VERSION=${puppetVersions[index]}") {
+        rubyTesting{
+          body()
         }
+      }
     }
+  }
+  parallel puppetMatrix
 }
