@@ -10,7 +10,7 @@ def call(String[] rubyVersions = ['ruby21', 'ruby22', 'ruby23'], Closure body) {
             def rubyMatrix = [:]
             for (int i = 0; i < rubyVersions.size(); i++) {
                 def index = i
-                matrix["${rubyVersions[index]}"] = {
+                rubyMatrix["${rubyVersions[index]}"] = {
                     container(name: "${rubyVersions[index]}"){
                         body()
                     }
