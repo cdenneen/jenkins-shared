@@ -12,7 +12,7 @@ def call(String[] rubyVersions = ['ruby21', 'ruby22', 'ruby23'], Closure body) {
         def index = i
         rubyMatrix["${rubyVersions[index]}"] = {
           container(name: "${rubyVersions[index]}"){
-            body(withEnv("RUBY_VERSION=${rubyVersions[index]}"))
+            body()
           }
         }
       }
