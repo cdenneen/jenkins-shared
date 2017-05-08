@@ -11,7 +11,7 @@ def call(String[] puppetVersions = ['4.7.1', '4.8.1', '4.9.4'], Closure body) {
       puppetLint {
         withEnv("PUPPET_GEM_VERSION=${puppetVersions[index]}")
       }
-      puppetSpec {
+      puppetUnit {
         withEnv("PUPPET_GEM_VERSION=${puppetVersions[index]}")
       }
     }
