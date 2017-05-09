@@ -1,5 +1,5 @@
 #!/usr/bin/groovy
 
 def call(Closure body) {
-  sh 'bundle exec rake spec'
+  sh 'STRICT_VARIABLES=no bundle exec rake spec'
 }
